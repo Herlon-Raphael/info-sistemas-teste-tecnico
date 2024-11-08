@@ -1,0 +1,140 @@
+.vehicle-list-card {
+  margin: 20px;
+  padding: 20px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  text-align: left;
+}
+
+td.mat-cell {
+  padding: 10px 20px;
+}
+
+button.mat-icon-button {
+  margin-right: 8px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #888;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
+
+mat-spinner {
+  display: block;
+  margin: 20px auto;
+}
+
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.empty-state-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  width: 64px;
+  height: 64px;
+  opacity: 33%;
+}
+
+.empty-state-text {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.new-vehicle-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.input-field {
+  width: auto;
+  max-width: 150px;
+  margin-top: 12px;
+}
+
+.mat-form-field {
+  padding: 0;
+}
+
+.mat-form-field input {
+  font-size: 14px;
+  padding: 5px;
+}
+
+.mat-form-field label {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.skeleton-cell {
+  height: 30px;
+  background-color: #e0e0e0;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e0e0e0;
+  }
+  50% {
+    background-color: #c0c0c0;
+  }
+  100% {
+    background-color: #e0e0e0;
+  }
+}
+
+.vehicle-list-card {
+  height: 90vh; 
+  overflow: auto; 
+}
+
+th.mat-header-cell {
+  position: sticky;
+  top: 0;
+  background-color: #fff; 
+  z-index: 1; 
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: white; /* Garantir que o fundo não seja transparente */
+  z-index: 1;
+}
+
+.table-container {
+  height: 80vh;
+  overflow-y: auto; 
+}
+
+

@@ -1,0 +1,60 @@
+<div class="form-container">
+    <mat-card class="form-card">
+      <mat-card-header>
+        <mat-card-title>Adicionar Novo Veículo</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()" class="vehicle-form">
+        <div class="form-grid">
+  
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Modelo</mat-label>
+            <input matInput formControlName="modelo" placeholder="Digite o modelo do veículo" />
+            <mat-error *ngIf="vehicleForm.controls['modelo'].hasError('required')">Este campo é obrigatório.</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Marca</mat-label>
+            <input matInput formControlName="marca" placeholder="Digite a marca do veículo" />
+            <mat-error *ngIf="vehicleForm.controls['marca'].hasError('required')">Este campo é obrigatório.</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Ano</mat-label>
+            <input matInput formControlName="ano" type="number" placeholder="Digite o ano do veículo" />
+            <mat-error *ngIf="vehicleForm.controls['ano'].hasError('required')">Este campo é obrigatório.</mat-error>
+            <mat-error *ngIf="vehicleForm.controls['ano'].hasError('min')">Ano inválido, o ano não pode ser inferior a 1900.</mat-error>
+            <mat-error *ngIf="vehicleForm.controls['ano'].hasError('max')">Ano inválido, o ano não pode ser superior ao ano atual.</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Chassi</mat-label>
+            <input matInput formControlName="chassi" placeholder="Digite o número do chassi" />
+            <mat-error *ngIf="vehicleForm.controls['chassi'].hasError('required')">Este campo é obrigatório.</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Renavam</mat-label>
+            <input matInput formControlName="renavam" placeholder="Digite o número do Renavam" />
+            <mat-error *ngIf="vehicleForm.controls['renavam'].hasError('required')">Este campo é obrigatório.</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Placa</mat-label>
+            <input matInput formControlName="placa" placeholder="Ex: ABC-1234">
+            <mat-error *ngIf="vehicleForm.controls['placa'].hasError('required')">Este campo é obrigatório.</mat-error>
+            <mat-error *ngIf="vehicleForm.controls['placa'].hasError('pattern')">Formato de placa inválido. Exemplo: ABC-1234</mat-error>
+          </mat-form-field>
+  
+          <div class="form-actions">
+            <button mat-raised-button color="primary" type="submit" [disabled]="vehicleForm.invalid">
+              Adicionar Veículo
+            </button>
+            <button mat-button color="accent" type="button" (click)="onReset()">
+              Limpar
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  

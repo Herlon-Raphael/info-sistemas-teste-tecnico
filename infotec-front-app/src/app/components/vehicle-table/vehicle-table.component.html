@@ -1,0 +1,161 @@
+<mat-card class="vehicle-list-card">
+  <div class="header-container">
+    <h2>Lista de Veículos</h2>
+    <button mat-icon-button (click)="onAddVehicle()">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+
+<ng-container *ngIf="loading; else content">
+    <table mat-table [dataSource]="[].constructor(5)" class="mat-elevation-z8 table">
+      <ng-container matColumnDef="placa">
+        <th mat-header-cell class="sticky-header" *matHeaderCellDef>Placa</th>
+        <td mat-cell *matCellDef="let vehicle">
+          <div class="skeleton-cell"></div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="chassi">
+        <th mat-header-cell class="sticky-header" *matHeaderCellDef>Chassi</th>
+        <td mat-cell *matCellDef="let vehicle">
+          <div class="skeleton-cell"></div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="renavam">
+        <th mat-header-cell class="sticky-header" *matHeaderCellDef>Renavam</th>
+        <td mat-cell *matCellDef="let vehicle">
+          <div class="skeleton-cell"></div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="modelo">
+        <th mat-header-cell class="sticky-header" *matHeaderCellDef>Modelo</th>
+        <td mat-cell *matCellDef="let vehicle">
+          <div class="skeleton-cell"></div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="marca">
+        <th mat-header-cell class="sticky-header" *matHeaderCellDef>Marca</th>
+        <td mat-cell *matCellDef="let vehicle">
+          <div class="skeleton-cell"></div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ano">
+        <th mat-header-cell class="sticky-header" *matHeaderCellDef>Ano</th>
+        <td mat-cell *matCellDef="let vehicle">
+          <div class="skeleton-cell"></div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell class="sticky-header" *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let vehicle">
+          <div class="skeleton-cell"></div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </ng-container>
+
+  <ng-template #content>
+    <ng-container *ngIf="vehicles && vehicles.length; else empty">
+      <div class="table-container">
+        <table mat-table [dataSource]="vehicles" class="mat-elevation-z8">
+          <ng-container matColumnDef="placa">
+            <th mat-header-cell class="sticky-header" *matHeaderCellDef>Placa</th>
+            <td mat-cell *matCellDef="let vehicle">
+              <mat-form-field *ngIf="editingVehicle?.id === vehicle.id"  class="input-field">
+                <input matInput [(ngModel)]="editingVehicle!.placa" placeholder="Placa" maxlength="8" />
+              </mat-form-field>
+              <span *ngIf="editingVehicle?.id !== vehicle.id">{{ vehicle.placa }}</span>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="chassi">
+            <th mat-header-cell class="sticky-header" *matHeaderCellDef>Chassi</th>
+            <td mat-cell *matCellDef="let vehicle">
+              <mat-form-field *ngIf="editingVehicle?.id === vehicle.id" class="input-field">
+                <input matInput [(ngModel)]="editingVehicle!.chassi" placeholder="Chassi" />
+              </mat-form-field>
+              <span *ngIf="editingVehicle?.id !== vehicle.id">{{ vehicle.chassi }}</span>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="renavam">
+            <th mat-header-cell class="sticky-header" *matHeaderCellDef>Renavam</th>
+            <td mat-cell *matCellDef="let vehicle">
+              <mat-form-field *ngIf="editingVehicle?.id === vehicle.id" class="input-field">
+                <input matInput [(ngModel)]="editingVehicle!.renavam" placeholder="Renavam" />
+              </mat-form-field>
+              <span *ngIf="editingVehicle?.id !== vehicle.id">{{ vehicle.renavam }}</span>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="modelo">
+            <th mat-header-cell class="sticky-header" *matHeaderCellDef>Modelo</th>
+            <td mat-cell *matCellDef="let vehicle">
+              <mat-form-field *ngIf="editingVehicle?.id === vehicle.id" class="input-field">
+                <input matInput [(ngModel)]="editingVehicle!.modelo" placeholder="Modelo" />
+              </mat-form-field>
+              <span *ngIf="editingVehicle?.id !== vehicle.id">{{ vehicle.modelo }}</span>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="marca">
+            <th mat-header-cell class="sticky-header" *matHeaderCellDef>Marca</th>
+            <td mat-cell *matCellDef="let vehicle">
+              <mat-form-field *ngIf="editingVehicle?.id === vehicle.id" class="input-field">
+                <input matInput [(ngModel)]="editingVehicle!.marca" placeholder="Marca" />
+              </mat-form-field>
+              <span *ngIf="editingVehicle?.id !== vehicle.id">{{ vehicle.marca }}</span>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="ano">
+            <th mat-header-cell class="sticky-header" *matHeaderCellDef>Ano</th>
+            <td mat-cell *matCellDef="let vehicle">
+              <mat-form-field *ngIf="editingVehicle?.id === vehicle.id" class="input-field">
+                <input matInput [(ngModel)]="editingVehicle!.ano" placeholder="Ano" type="number" />
+              </mat-form-field>
+              <span *ngIf="editingVehicle?.id !== vehicle.id">{{ vehicle.ano }}</span>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="acoes">
+            <th mat-header-cell class="sticky-header" *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let vehicle">
+              <button mat-icon-button color="primary" *ngIf="editingVehicle?.id !== vehicle.id" (click)="editVehicle(vehicle)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteVehicle(vehicle.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button mat-icon-button color="accent" *ngIf="editingVehicle?.id === vehicle.id" (click)="saveVehicle()">
+                <mat-icon>save</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="editingVehicle?.id === vehicle.id" (click)="cancelEdit()">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </ng-container>
+
+    <ng-template #empty>
+      <div class="empty-state-container">
+        <mat-icon class="empty-state-icon">sentiment_very_dissatisfied</mat-icon>
+        <p class="empty-state-text">Parece que não temos nenhum veículo cadastrado ainda. Que tal adicionar um?</p>
+        <button mat-raised-button color="primary" class="new-vehicle-button" (click)="onAddVehicle()">Adicionar Novo Veículo</button>
+      </div>
+    </ng-template>
+  </ng-template>
+</mat-card>
